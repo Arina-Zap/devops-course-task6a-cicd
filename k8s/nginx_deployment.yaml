@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cc-deployment
+  namespace: nginx
+  labels:
+    app: cc-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cc-app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: cc-app
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: cc-app
+        image: arinazap/spring-boot-cc-app:0.0.1
+        ports:
+        - name: cc-http
+          containerPort: 8080
+
