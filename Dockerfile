@@ -1,12 +1,8 @@
-# Build stage
-FROM maven:3.5.2-jdk-9 AS builder
-RUN mkdir /app
-COPY app/* /app/
-COPY pom.xml /app
-RUN mvn -f /app/pom.xml clean package
+FROM alpine:3.14.3
 
-# Run stage
-FROM openjdk:9
-COPY --from=builder /app/target/hello-world-0.0.1-SNAPSHOT.jar /app/hello-world-0.0.1-SNAPSHOT.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","/app/hello-world-0.0.1-SNAPSHOT.jar"]
+RUN apk --no-cache add apache2 php8-apache2
+RUN rm -f /var/www/localhost/htdocs/index.html
+COPY app/index.php /var/www/localhost/htdocs/index.php
+
+CMD ["httpd", "-DFOREGROUND"]
+EXPOSE 80
