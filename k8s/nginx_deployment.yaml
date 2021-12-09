@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: simple-php-app-deployment
-  namespace: nginx
+  namespace: simple-php-app
   labels:
     app: simple-php-app
 spec:

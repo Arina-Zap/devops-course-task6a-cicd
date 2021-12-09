@@ -21,4 +21,4 @@ jobs:
       run: docker run -p 8080:8080 -d --rm --name simple-php-app simple-php-app:0.0.1
 
     - name: Get HTTP response from the App
-      run: curl -I http://127.0.0.1:8080
+      run: curl -I http://127.0.0.1

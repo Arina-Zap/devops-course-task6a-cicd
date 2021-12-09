@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: simple-php-app-svc
-  namespace: nginx
+  namespace: simple-php-app
 spec:
   selector:
     app: simple-php-app
